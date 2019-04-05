@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".AdminActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +23,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:label="SIGNUP"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.welcome" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="LOGIN"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.welcome" />
         <activity
             android:name=".HomeActivity"
             android:label="HOME"
@@ -32,11 +41,15 @@
             android:name=".CheckInActivity"
             android:label="CHECKED IN"
             android:theme="@style/AppTheme.welcome" />
-
-        <activity android:name=".EmployeeView"
+        <activity
+            android:name=".EmployeeView"
             android:label="ACTIVITY LIST"
-            android:theme="@style/AppTheme.welcome"
-            android:parentActivityName=".HomeActivity"/>
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.welcome" />
+        <activity
+            android:name=".EmployeeListActivity"
+            android:label="EMPLOYEE"
+            android:theme="@style/AppTheme.welcome" />
     </application>
 
 </manifest>

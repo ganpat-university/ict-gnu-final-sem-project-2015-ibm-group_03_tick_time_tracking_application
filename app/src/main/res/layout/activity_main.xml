@@ -41,4 +41,17 @@
         android:textColor="#fff"
         android:textSize="18dp" />
 
+    <Button
+        android:id="@+id/button_admin"
+        android:layout_width="@dimen/edittext"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@color/blue"
+        android:text="Admin"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="18dp" />
+
 </RelativeLayout>

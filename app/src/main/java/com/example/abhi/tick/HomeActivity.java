@@ -101,6 +101,11 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     public void buttonClicked() {
         location = getLocation();
         if (location != null) {

@@ -1,9 +1,9 @@
 package com.example.abhi.tick;
 
 public class employee {
-    String location;
-    String work;
-    String time;
+    private String location;
+    private String work;
+    private String time;
 
     public employee(String location, String work, String time) {
         this.location = location;

@@ -140,6 +140,11 @@ public class CheckInActivity extends AppCompatActivity {
         sendPostReqAsyncTask.execute(location, work, time);
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     public void onSignupSuccess() {
         btn_checkout.setEnabled(true);
         GetData();

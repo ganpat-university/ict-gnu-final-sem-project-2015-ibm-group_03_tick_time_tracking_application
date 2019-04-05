@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -32,7 +31,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
 
-public class LoginActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity {
 
     Button btn_login;
     ExtendedEditText username, password;
@@ -42,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_admin);
 
         username = (ExtendedEditText) findViewById(R.id.edit_email);
         password = (ExtendedEditText) findViewById(R.id.edit_password);
@@ -60,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     public void GetData() {
@@ -82,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 edt.putBoolean("activity_executed", true);
                 edt.commit();*/
 
-                URL url = new URL("http://tickapplication.000webhostapp.com/api/signin.php");
+                URL url = new URL("http://tickapplication.000webhostapp.com/api/adminsignin.php");
 
                 GetData();
                 JSONObject postDataParams = new JSONObject();
@@ -128,39 +126,19 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             try {
-                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                 JSONObject demo = new JSONObject(result);
                 tempError = demo.getString("error");
-                //tempMessage = demo.getString("message");
-                JSONObject data = demo.getJSONObject("data");
-                id = data.getInt("id");
-                tempEmail = data.getString("first_name");
-                tempPass = data.getString("last_name");
-
-                tempId = String.valueOf(id);
-                SharedPreferences sharedPreferences = getSharedPreferences("LoginDetails", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                editor.putString("Id", tempId);
-                editor.putString("FirstName", tempEmail);
-                editor.putString("LastName", tempPass);
-                //editor.putString("Password", password);
-                editor.apply();
-                /*SharedPreferences shared = getSharedPreferences("Mypref", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = shared.edit();
-
-                editor.putString("email", tempEmail);
-                editor.putString("pass", tempPass);*/
-
+                Log.d("temError" ,tempError);
+                if (tempError == "false") {
+                    Log.d("Email", tempEmail + ":" + tempPass);
+                    onSignupSuccess();
+                } else {
+                    onSignupFailed();
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (tempError == "false") {
-                Log.d("Email", tempEmail + ":" + tempPass);
-                onSignupSuccess();
-            } else {
-                onSignupFailed();
-            }
+
             //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
         }
     }
@@ -191,18 +169,13 @@ public class LoginActivity extends AppCompatActivity {
     public void onSignupSuccess() {
         btn_login.setEnabled(true);
         //GetData();
-        Intent intent_login = new Intent(getApplicationContext(), HomeActivity.class);
+        Intent intent_login = new Intent(getApplicationContext(), EmployeeListActivity.class);
         startActivity(intent_login);
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Error in sign up", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Error in Login", Toast.LENGTH_LONG).show();
         btn_login.setEnabled(true);
-    }
-
-    @Override
-    public void onBackPressed() {
-
     }
 
     public boolean validate() {
@@ -227,3 +200,4 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 }
+

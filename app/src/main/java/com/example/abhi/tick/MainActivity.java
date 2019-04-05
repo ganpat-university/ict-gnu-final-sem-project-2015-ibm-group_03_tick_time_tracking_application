@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn_sign_up, btn_login;
+    Button btn_sign_up, btn_login, btn_admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn_sign_up = (Button) findViewById(R.id.button_sign_up);
         btn_login = (Button) findViewById(R.id.button_login);
+        btn_admin = (Button) findViewById(R.id.button_admin);
 
         btn_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent_login = new Intent(getApplicationContext(), LoginActivity.class);
                 Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation,R.anim.animation2).toBundle();
                 startActivity(intent_login, bndlanimation);
+                //startActivity(intent_login);
+            }
+        });
+
+        btn_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_admin = new Intent(getApplicationContext(), AdminActivity.class);
+                Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation,R.anim.animation2).toBundle();
+                startActivity(intent_admin, bndlanimation);
                 //startActivity(intent_login);
             }
         });
